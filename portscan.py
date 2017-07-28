@@ -10,10 +10,10 @@ from dbconn import update_portstatus,update_portbase
 
 
 def main():
-    
+
     #define a list for store msg
     a=[]
-    
+
     #read db config file
     cf = ConfigParser.ConfigParser()
     cf.read("db.conf")
@@ -26,12 +26,8 @@ def main():
     else:
         sys.exit()
 
-#read today's switch port status  information       
-    filedate = sys.argv[1]
-    filename = filedate+"-portcheck.log"
-    info=open(filename,'r').readlines()
-
-#determine if the new port-status changed,if changed update db.    
+"portscan.py" 61L, 1778C
+#determine if the new port-status changed,if changed update db.
     for line in info:
         try:
             hostname= line.split()[0]
@@ -43,11 +39,11 @@ def main():
         else:
             res = update_portstatus(hostname,itemname,portstatus,db_ip,db_user,db_pass)
         if res:           # if res == 1 means port-status has changed
-        if portstatus == '1': #if port status from down change to up, need modify port-status's baseline 
-            portchange = 'sync_base'
-            update_portbase(hostname,itemname,portstatus,db_ip,db_user,db_pass)
-        elif portstatus == '2': #if port-status from up change to down, baseline no need to modify automatic by default,should be ack by NOC and modify it .
-            portchange = 'no_change'
+            if portstatus == '1': #if port status from down change to up, need modify port-status's baseline
+                portchange = 'sync_base'
+                update_portbase(hostname,itemname,portstatus,db_ip,db_user,db_pass)
+            elif portstatus == '2': #if port-status from up change to down, baseline no need to modify automatic by default,should be ack by NOC and modify it .
+                portchange = 'no_change'
             msg = '{"hostname":'+hostname+',"itemname":'+itemname+',"portstatus":'+portstatus+',"portchange":'+portchange+'}'
             a.append(msg)
         #print "update it !"
