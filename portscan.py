@@ -19,9 +19,9 @@ def main():
     cf.read("db.conf")
     secs = cf.sections()
     if 'db' in secs:
-        db_ip = cf.get("db", "ip")
-        db_user = cf.get("db", "user")
-        db_pass = cf.get("db", "pass")
+        db_ip = cf.get("db", "db_ip")
+        db_user = cf.get("db", "db_user")
+        db_pass = cf.get("db", "db_pass")
 
     else:
         sys.exit()
