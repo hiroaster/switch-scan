@@ -26,8 +26,10 @@ def main():
     else:
         sys.exit()
 
-"portscan.py" 61L, 1778C
 #determine if the new port-status changed,if changed update db.
+    filedate = sys.argv[1]
+    filename = filedate+"-portcheck.log"
+    info=open(filename,'r').readlines()
     for line in info:
         try:
             hostname= line.split()[0]
