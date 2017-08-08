@@ -49,8 +49,8 @@ def main():
             msg = '{"hostname":'+hostname+',"itemname":'+itemname+',"portstatus":'+portstatus+',"portchange":'+portchange+'}'
             a.append(msg)
         #print "update it !"
-    for i in range(len(a)):
-        print a[i]
+    mail_subject = "[Port-autopilot]FS-IDC port_status change log--"+filedate
+    mailSend(mail_subject,str(a))
 
 
 
