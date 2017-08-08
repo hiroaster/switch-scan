@@ -36,3 +36,5 @@ echo "--end sync db---"
 
 mv -f $DATE-portcheck.log checklog/
 fi
+# scan port alert off status
+python alert-off.py $DATE
