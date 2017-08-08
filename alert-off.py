@@ -47,12 +47,12 @@ def main():
                 desc = res[i][3]
                 if stats == '1':
                     if 'server' not in desc  and  'ignore' not in desc:
-                        alert = 0
+                        alert = '0'
                     else:
-                        alert = 1
+                        alert = '1'
                         
                 else:
-                    alert = 1
+                    alert = '1'
                 
                 rest = update_alert(host,item,alert,db_ip,db_user,db_pass)
                 if rest:
