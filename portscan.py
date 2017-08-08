@@ -7,6 +7,7 @@ import json
 import sys
 import ConfigParser
 from dbconn import update_portstatus,update_portbase
+from alertsend import smsSend,mailSend
 
 
 def main():
